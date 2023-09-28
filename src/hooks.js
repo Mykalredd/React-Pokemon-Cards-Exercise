@@ -1,42 +1,42 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+// import { useState, useEffect } from "react";
+// import axios from "axios";
 
-function useFlip(initialFlipState = true) {
-  const [isFlipped, setFlipped] = useState(initialFlipState);
+// function useFlip(initialFlipState = true) {
+//   const [isFlipped, setFlipped] = useState(initialFlipState);
 
-  const flip = () => {
-    setFlipped(isUp => !isUp);
-  };
+//   const flip = () => {
+//     setFlipped(isUp => !isUp);
+//   };
 
-  return [isFlipped, flip];
-}
+//   return [isFlipped, flip];
+// }
 
-function useAxios(keyInLS, baseUrl) {
-  const [responses, setResponses] = useLocalStorage(keyInLS);
+// function useAxios(keyInLS, baseUrl) {
+//   const [responses, setResponses] = useLocalStorage(keyInLS);
 
-  const addResponseData = async (formatter = data => data, restOfUrl = "") => {
-    const response = await axios.get(`${baseUrl}${restOfUrl}`);
-    setResponses(data => [...data, formatter(response.data)]);
-  };
+//   const addResponseData = async (formatter = data => data, restOfUrl = "") => {
+//     const response = await axios.get(`${baseUrl}${restOfUrl}`);
+//     setResponses(data => [...data, formatter(response.data)]);
+//   };
 
-  const clearResponses = () => setResponses([]);
+//   const clearResponses = () => setResponses([]);
 
-  return [responses, addResponseData, clearResponses];
-}
+//   return [responses, addResponseData, clearResponses];
+// }
 
-function useLocalStorage(key, initialValue = []) {
-  if (localStorage.getItem(key)) {
-    initialValue = JSON.parse(localStorage.getItem(key));
-  }
-  const [value, setValue] = useState(initialValue);
+// function useLocalStorage(key, initialValue = []) {
+//   if (localStorage.getItem(key)) {
+//     initialValue = JSON.parse(localStorage.getItem(key));
+//   }
+//   const [value, setValue] = useState(initialValue);
 
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [value, key]);
+//   useEffect(() => {
+//     localStorage.setItem(key, JSON.stringify(value));
+//   }, [value, key]);
 
-  return [value, setValue];
-}
+//   return [value, setValue];
+// }
 
-export default useLocalStorage;
+// export default useLocalStorage;
 
-export { useFlip, useAxios, useLocalStorage };
+// export { useFlip, useAxios, useLocalStorage };
